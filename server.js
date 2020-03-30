@@ -14,7 +14,7 @@ const createServer = () =>
           result = await commands[command](...args);
         } catch (err) {
           if (err.status) {
-            res.writeHead(err.status, { 'Content-Type': 'text/html' });
+            res.writeHead(err.status, { 'Content-Type': 'application/json' });
           }
           if (err.message) {
             res.write(err.message);
@@ -24,10 +24,10 @@ const createServer = () =>
       }
 
       if (result) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.writeHead(200, { 'Content-Type': 'application/json' });
         res.write(JSON.stringify(result));
       } else {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
+        res.writeHead(404, { 'Content-Type': 'application/json' });
       }
 
       res.end();
