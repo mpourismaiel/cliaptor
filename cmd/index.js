@@ -19,6 +19,15 @@ const commands = {
   set: clipator.set,
   setLength: length => clipator.setLength(length),
   getLength: () => clipator.length,
+  remove: id => {
+    const item = clipator.get(id);
+    if (!item) {
+      return { message: 'Item not found', status: 404 };
+    }
+
+    clipator.remove({ key: 'id', value: id });
+    return item;
+  },
   mark: require('./mark'),
   copy: require('./copy'),
 };
